@@ -20,13 +20,14 @@ public class RequestProductDTO {
     @NotNull
     private Long price;
 
+    @NotBlank
+    @Size(max=255, message = "Description cannot be greater than 255 characters")
+    private String description;
+
     @NotNull
     private Integer quantity;
 
     @NotNull
     private Long categoryId;
 
-    public Product toProduct() {
-        return new Product(this.getName(), this.getPrice(), this.getQuantity());
-    }
 }

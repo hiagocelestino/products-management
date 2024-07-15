@@ -1,20 +1,18 @@
 package com.hiagocelestino.products.controllers;
 
-import com.hiagocelestino.products.dtos.RequestCategoryDTO;
 import com.hiagocelestino.products.dtos.RequestProductDTO;
 import com.hiagocelestino.products.dtos.ResponseCategoryDTO;
-import com.hiagocelestino.products.dtos.ResponseProductDTO;
 import com.hiagocelestino.products.models.Product;
 import com.hiagocelestino.products.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("products")
@@ -23,8 +21,11 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public List<Product> findAll() {
-        return this.productService.findAll();
+    public Page<Product> findAll(@RequestParam(defaultValue = "0") Integer pageNo,
+                                 @RequestParam(defaultValue = "10") Integer pageSize,
+                                 @RequestParam(defaultValue = "price") String sortBy,
+                                 @RequestParam(defaultValue = "asc") String sortDirection) {
+        return this.productService.findAll(pageNo, pageSize, sortBy, sortDirection);
     }
 
     @PostMapping
