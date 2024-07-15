@@ -1,7 +1,6 @@
 package com.hiagocelestino.products.controllers;
 
 import com.hiagocelestino.products.dtos.RequestCategoryDTO;
-import com.hiagocelestino.products.dtos.ResponseCategoryDTO;
 import com.hiagocelestino.products.models.Category;
 import com.hiagocelestino.products.models.Product;
 import com.hiagocelestino.products.services.CategoryService;
@@ -24,8 +23,11 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll() {
-        List<Category> categories = this.categoryService.findAll();
+    public ResponseEntity<List<Category>> findAll(@RequestParam(required = false) String name) {
+        if (name == null) {
+            name = "";
+        }
+        List<Category> categories = this.categoryService.findAll(name);
         return ResponseEntity.ok().body(categories);
     }
 

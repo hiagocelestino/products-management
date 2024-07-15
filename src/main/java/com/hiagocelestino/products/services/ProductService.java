@@ -11,8 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,7 +24,6 @@ public class ProductService {
     public Page<Product> findAll(Integer pageNo, Integer pageSize, String sortBy, String sortDirection) {
         Sort.Direction direction = sortDirection.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
         PageRequest paging = PageRequest.of(pageNo, pageSize, Sort.by(direction, sortBy));
-
         return this.productRespository.findAll(paging);
     }
 

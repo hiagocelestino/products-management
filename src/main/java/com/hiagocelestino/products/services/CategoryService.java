@@ -1,7 +1,6 @@
 package com.hiagocelestino.products.services;
 
 import com.hiagocelestino.products.dtos.RequestCategoryDTO;
-import com.hiagocelestino.products.dtos.ResponseCategoryDTO;
 import com.hiagocelestino.products.models.Category;
 import com.hiagocelestino.products.models.Product;
 import com.hiagocelestino.products.repositories.CategoryRepository;
@@ -20,8 +19,8 @@ public class CategoryService {
     @Autowired
     private ProductRepository productRepository;
 
-    public List<Category> findAll() {
-        return this.categoryRespository.findAll();
+    public List<Category> findAll(String name) {
+        return this.categoryRespository.findByNameContaining(name);
     }
 
     public Optional<Category> findById(Long id) {

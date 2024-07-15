@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -24,7 +23,8 @@ public class ProductController {
     public Page<Product> findAll(@RequestParam(defaultValue = "0") Integer pageNo,
                                  @RequestParam(defaultValue = "10") Integer pageSize,
                                  @RequestParam(defaultValue = "price") String sortBy,
-                                 @RequestParam(defaultValue = "asc") String sortDirection) {
+                                 @RequestParam(defaultValue = "asc") String sortDirection
+    ) {
         return this.productService.findAll(pageNo, pageSize, sortBy, sortDirection);
     }
 

@@ -53,15 +53,24 @@ GET /categories/{id}/products - Retorna os produtos associado a categoria do ID 
   "name": "nome da categoria"
 }
 ```
+
+**OBS:** O endpoint **GET /categories** pode ser filtrado passando o query param **name**
+
 **API de Produtos**
 
 ```
-GET /producs - Retorna todos os produtos
-GET /producs/{id} - Retorna produto do ID fornecido
-POST /producs - Criação de novo produto
-PUT /producs/{id} - Atualização do produto do ID fornecido
-DELETE /producs/{id} - Deleção do produto do ID fornecido
+GET /products - Retorna todos os produtos
+GET /products/{id} - Retorna produto do ID fornecido
+POST /products - Criação de novo produto
+PUT /products/{id} - Atualização do produto do ID fornecido
+DELETE /products/{id} - Deleção do produto do ID fornecido
 ```
+**OBS:** A rota de **GET /products** pode ser ordenada e paginada com os seguintes parâmetros:
+pageNo: número da página buscada
+pageSize: quantidade de itens por página
+sortBy: campo que deve ser usada para ordernar
+sortDirection: direção de ordenação: asc ou desc
+
 
 **Body**
 ```JSON
@@ -73,3 +82,10 @@ DELETE /producs/{id} - Deleção do produto do ID fornecido
   "categoryId": 1
 }
 ```
+
+### Observações:
+   - Existe um arquivo na raiz do projeto com queries para popular o banco com alguns dados
+   - Dentro da pasta postman existe uma collection pronta com todos endpoints, sendo necessário apenas importar
+   - Testes não foram implementados
+   - Tratamentos de exceções não foram implementados
+   
